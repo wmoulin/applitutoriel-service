@@ -57,8 +57,8 @@
 	<!-- Properties -->
 	<properties>
 		<param.dev.path>${project.build.directory}/parametrage-env-dev</param.dev.path>
-		<java.version>1.8</java.version>
-		<spring-boot.scope>provided</spring-boot.scope>
+		<java.version>11</java.version>
+		<spring-boot.scope>compile</spring-boot.scope><!-- >spring-boot.scope>provided</spring-boot.scope -->
 		<war.exclude>WEB-INF/classes/*.properties,WEB-INF/classes/logback-hornet.xml,WEB-INF/classes/fr/gouv/diplomatie/applitutoriel/Application.class</war.exclude>
 		<mapstruct.version>1.3.0.Final</mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
@@ -210,6 +210,20 @@
 		    <groupId>org.mapstruct</groupId>
 		    <artifactId>mapstruct-jdk8</artifactId>
 		    <version>${mapstruct.version}</version> 
+		</dependency>
+		
+		<!-- news dependencies -->
+		<dependency>
+		  	<groupId>com.sun.xml.ws</groupId>
+		  	<artifactId>jaxws-ri</artifactId>
+		  	<version>2.3.0</version>
+		  	<type>pom</type>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-war-plugin</artifactId>
+		  <version>3.2.3</version>
+		  <type>maven-plugin</type>
 		</dependency>
 	</dependencies>
 
@@ -382,6 +396,7 @@
 			</plugin>
 	        <plugin>
         		<artifactId>maven-war-plugin</artifactId>
+        		<version>3.2.3</version>
         		<configuration>
 			    	<packagingExcludes>${war.exclude}</packagingExcludes>
         		</configuration>
@@ -560,15 +575,14 @@
 			            <artifactId>maven-compiler-plugin</artifactId>
  			            <version>3.5.1</version> <!-- or newer version -->
 			            <configuration>
-			                <source>1.8</source> <!--depending on your project -->
-			                <target>1.8</target> <!--depending on your project -->
+			                <source>11</source> <!--depending on your project -->
+			                <target>11</target> <!--depending on your project -->
 			                <annotationProcessorPaths>
 			                    <path>
 			                        <groupId>org.mapstruct</groupId>
 			                        <artifactId>mapstruct-processor</artifactId>
 			                        <version>${mapstruct.version}</version>
 			                    </path>
-			                    other annotation processors
 			                </annotationProcessorPaths>
 			            </configuration>
 			        </plugin>
